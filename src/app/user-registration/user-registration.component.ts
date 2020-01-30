@@ -42,6 +42,9 @@ export class UserRegistrationComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  //get the values and go to service
+
   PostData(registrationForm: NgForm) {
     this.submitted = true;
     this.registrationfield.userName = this.registrationForm.get('userName').value;

@@ -11,6 +11,7 @@ export class HttpservicesService {
     constructor(private httpclient: HttpClient) { }
 
     ServicesUrl = 'http://localhost:8080/api/';
+
     // servicebook(bookingfield: BookingField): Observable<any> {
     //     let httpHeaders = new HttpHeaders().set('content-type', 'application/json');
     //     let options = {
@@ -19,7 +20,7 @@ export class HttpservicesService {
     //     return this.httpclient.post(this.ServicesUrl + 'register', bookingfield, options)
     // }
     registration(registrationField: RegistrationField): Observable<any> {
-        let httpHeaders = new HttpHeaders().set('content-type', 'application/json');
+        let httpHeaders = new HttpHeaders().set('content-type', 'application/json'); // data will be converted to json formate 
         let options = {
             headers: httpHeaders
         };
