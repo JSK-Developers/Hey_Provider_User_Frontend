@@ -23,7 +23,7 @@ export class HttpservicesService {
         let options = {
             headers: httpHeaders
         };
-        return this.httpclient.post(this.ServicesUrl + 'register', registrationField, options)
+        return this.httpclient.post(this.ServicesUrl + 'users', registrationField, options)
     }
     // login(bookingfield: BookingField): Observable<any> {
     //     let httpHeaders = new HttpHeaders().set('content-type', 'application/json');
