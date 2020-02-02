@@ -1,12 +1,12 @@
-export class BookingField {
+export class ACregistrationfield {
     name: string;
     // email: string = "";
     number: string;
-    // date: string;
+    date: string;
     time: string;
     addresss1: string;
     addresss2: string;
-    // city: string;
+    city: string;
     state: string;
     pincode: string;
 

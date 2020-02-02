@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { from, Observable } from 'rxjs';
 import { BookingFormComponent } from '../booking-form/booking-form.component';
-import { BookingField, RegistrationField } from '../booking-form/bookingfield';
+import {  RegistrationField, ACregistrationfield } from '../booking-form/bookingfield';
 @Injectable({
     providedIn: 'root'
 })
@@ -12,13 +12,13 @@ export class HttpservicesService {
 
     ServicesUrl = 'http://localhost:8080/api/';
 
-    // servicebook(bookingfield: BookingField): Observable<any> {
-    //     let httpHeaders = new HttpHeaders().set('content-type', 'application/json');
-    //     let options = {
-    //         headers: httpHeaders
-    //     };
-    //     return this.httpclient.post(this.ServicesUrl + 'register', bookingfield, options)
-    // }
+    ACservicebook(bookingfield: ACregistrationfield): Observable<any> {
+        let httpHeaders = new HttpHeaders().set('content-type', 'application/json');
+        let options = {
+            headers: httpHeaders
+        };
+        return this.httpclient.post(this.ServicesUrl + 'AcServices', bookingfield, options)
+    }
     registration(registrationField: RegistrationField): Observable<any> {
         let httpHeaders = new HttpHeaders().set('content-type', 'application/json'); // data will be converted to json formate 
         let options = {

@@ -8,8 +8,7 @@ import { BookingFormComponent } from './booking-form/booking-form.component';
 import { ErrorComponent } from './error/error.component';
 import { LogoutComponent } from './logout/logout.component';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
-
-
+import { ServiceFormComponent } from './service-form/service-form.component';
 // const routes: Routes = [
 //   {
 //     path: '',
@@ -29,7 +28,8 @@ const routes: Routes = [
   { path: 'contactUs', component: ContactusComponent },
   { path: 'aboutUs', component: AboutUsComponent },
   { path: 'logout', component: LogoutComponent },
-  { path: '**', component: ErrorComponent }
+  { path: 'service-form', component: ServiceFormComponent },
+  { path: '**', component: ErrorComponent } ,
 ];
 
 

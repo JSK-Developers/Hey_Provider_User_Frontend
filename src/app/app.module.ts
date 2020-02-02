@@ -23,6 +23,7 @@ import { HttpModule } from '@angular/http';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
 import { HttpservicesService } from './Http_Services_Api/httpservices.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ServiceFormComponent } from './service-form/service-form.component';
 
 
 
@@ -45,7 +46,8 @@ import { HttpClientModule } from '@angular/common/http';
     LogoutComponent,
     CustomerServicesComponent,
     CustomerServiceModelComponent,
-    UserRegistrationComponent
+    UserRegistrationComponent,
+    ServiceFormComponent
   ],
   entryComponents: [
     CustomerServiceModelComponent
