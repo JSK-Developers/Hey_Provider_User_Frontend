@@ -4,7 +4,7 @@ import { BsDatepickerConfig } from 'ngx-bootstrap';
 import { Observable, observable } from 'rxjs';
 import {  ACregistrationfield } from './bookingfield';
 import { error } from 'util';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpservicesService } from '../Http_Services_Api/httpservices.service';
 
 @Component({
@@ -40,6 +40,7 @@ export class BookingFormComponent  {
 
   ACregistrationfield:ACregistrationfield;
   constructor(private formbulder: FormBuilder,
+    private router:Router,
     private route: ActivatedRoute, private userRegistrationServices: HttpservicesService  ) {
     this.bsConfig = Object.assign({}, { containerClass: this.colorTheme });
     this.minDate = new Date();
@@ -109,6 +110,11 @@ export class BookingFormComponent  {
       this.submitted = false;
       this.bookingForm.reset();
     }
+    onNext(){
+        this.router.navigate(['/payment']);
+     }
+      
+    }
     // getWelcomeMessage() {
     //   console.log(this.service.executeHelloWorldBeanService());
     //   this.service.executeHelloWorldBeanService().subscribe(
@@ -119,7 +125,7 @@ export class BookingFormComponent  {
     //   //console.log('get welcome message');
     // }
 
-    getWelcomeMessageWithParameter() {
+    // getWelcomeMessageWithParameter() {
       //console.log(this.service.executeHelloWorldServiceWithPathVariable());
       // this.service.executeHelloWorldServiceWithPathVariable(this.hello).subscribe(
       //   response => this.handelSuccessfulResponse(response),
@@ -127,20 +133,20 @@ export class BookingFormComponent  {
       // );
       // console.log('last line')
       //console.log('get welcome message');
-    }
+    // }
 
 
-    handelSuccessfulResponse(response) {
-      this.welcomeMessageFromService = response.message
-      //console.log(response);
-      //console.log(response.message);
-    }
+    // handelSuccessfulResponse(response) {
+    //   this.welcomeMessageFromService = response.message
+    //   //console.log(response);
+    //   //console.log(response.message);
+    // }
 
-    handelErrorResponse(error) {
-      // console.log(error)
-      // console.log(error.error)
-      // console.log(error.error.message)
-      this.welcomeMessageFromService = error.error.message
-    }
+    // handelErrorResponse(error) {
+    //   // console.log(error)
+    //   // console.log(error.error)
+    //   // console.log(error.error.message)
+    //   this.welcomeMessageFromService = error.error.message
+    // }
 
-}
+

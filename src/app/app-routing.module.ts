@@ -31,6 +31,7 @@ const routes: Routes = [
   { path: 'aboutUs', component: AboutUsComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'service-form', component: ServiceFormComponent },
+  {path: 'payment', component: PaymentComponent},
   { path: '**', component: ErrorComponent },
 ];
 
