@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { CustomerServiceModelComponent } from './customer-service-models/customer-services-model.component';
 import { Router } from '@angular/router';
@@ -20,6 +20,9 @@ export class CustomerServicesComponent implements OnInit {
 
     this.bsModalRef = this.modalService.show(CustomerServiceModelComponent, Object.assign({}, { class: 'gray modal-lg' }));
     this.bsModalRef.content.closeBtnName = 'Close';
+  }
+  close(): void {
+    this.bsModalRef.hide();
   }
 
 }

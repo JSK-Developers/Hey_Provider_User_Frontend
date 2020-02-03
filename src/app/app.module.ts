@@ -24,6 +24,8 @@ import { UserRegistrationComponent } from './user-registration/user-registration
 import { HttpservicesService } from './Http_Services_Api/httpservices.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceFormComponent } from './service-form/service-form.component';
+import { ACServiceModelComponent } from './customer-services/AcRepairServices/AcRepairService.component';
+import { PaymentComponent } from './payment/payment.component';
 
 
 
@@ -47,10 +49,13 @@ import { ServiceFormComponent } from './service-form/service-form.component';
     CustomerServicesComponent,
     CustomerServiceModelComponent,
     UserRegistrationComponent,
-    ServiceFormComponent
+    ServiceFormComponent,
+    ACServiceModelComponent,
+    PaymentComponent
   ],
   entryComponents: [
-    CustomerServiceModelComponent
+    CustomerServiceModelComponent,
+    ACServiceModelComponent
   ],
 
   imports: [

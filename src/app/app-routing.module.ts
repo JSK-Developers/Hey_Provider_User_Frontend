@@ -9,6 +9,7 @@ import { ErrorComponent } from './error/error.component';
 import { LogoutComponent } from './logout/logout.component';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
 import { ServiceFormComponent } from './service-form/service-form.component';
+import { PaymentComponent } from './payment/payment.component';
 // const routes: Routes = [
 //   {
 //     path: '',
@@ -22,14 +23,15 @@ import { ServiceFormComponent } from './service-form/service-form.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'book/:name', component: BookingFormComponent },
+  { path: 'AcService', component: BookingFormComponent },
+  { path: 'payment', component: PaymentComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: UserRegistrationComponent },
   { path: 'contactUs', component: ContactusComponent },
   { path: 'aboutUs', component: AboutUsComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'service-form', component: ServiceFormComponent },
-  { path: '**', component: ErrorComponent } ,
+  { path: '**', component: ErrorComponent },
 ];
 
 

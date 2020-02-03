@@ -1,38 +1,37 @@
 <div class=" card-header">
 
-    <div class="myFooter">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-            content.
-            <div class="">
-                <p> This content is a little bit longer.</p>
-                <p class="card-text">Last updated 3 mins ago</p>
-            </div>
-    </div>
+  <div class="myFooter">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+      content.
+      <div class="">
+        <p> This content is a little bit longer.</p>
+        <p class="card-text">Last updated 3 mins ago</p>
+      </div>
+  </div>
 </div>
 <div class="card-body">
-    <div class="container">
-        <div class="card-deck">
-            <div class="card colors">
-              <div class="card-body">
-                <form [formGroup]='bookingForm' class="needs-validation" (ngSubmit)="PostData(bookingForm)">
-                    <div class="form-group">
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text">Username</span>
-                          </div>
-                          <input type="text"  class="form-control"
-                          formControlName="name" class="form-control"
-                            [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
-                          <div class="input-group-append">
-                            <span class="input-group-text"><i class="fa fa-user"></i></span>
-                          </div>
-                          <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-                            <div *ngIf="f.name.errors.required">UserName is required</div>
-                        </div>
-                        </div>
-                    </div>
-                    <!-- <div class=" form-Group">
+  <div class="container">
+    <div class="card-deck">
+      <div class="card colors">
+        <div class="card-body">
+          <form [formGroup]='bookingForm' class="needs-validation" (ngSubmit)="PostData(bookingForm)">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Username</span>
+                </div>
+                <input type="text" class="form-control" formControlName="name" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                <div class="input-group-append">
+                  <span class="input-group-text"><i class="fa fa-user"></i></span>
+                </div>
+                <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                  <div *ngIf="f.name.errors.required">UserName is required</div>
+                </div>
+              </div>
+            </div>
+            <!-- <div class=" form-Group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><span class="input-group-text">Username</span></span>
                         </div>
@@ -45,24 +44,22 @@
                             <div *ngIf="f.name.errors.required">UserName is required</div>
                         </div>
                     </div> -->
-                    <div class="form-group">
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text">Date</span>
-                          </div>
-                          <input type="text"  class="form-control"
-                          #dp="bsDatepicker"  bsDatepicker
-                            [bsConfig]="bsConfig" [minDate]="minDate"
-                            [ngClass]="{ 'is-invalid': submitted && f.date.invalid }">
-                          <div class="input-group-append">
-                            <span class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-                          </div>
-                          <div *ngIf="submitted && f.number.errors" class="invalid-feedback">
-                            <div *ngIf="f.number.errors.required">Valid Mobile Number is required</div>
-                        </div>
-                        </div>
-                        </div>
-                    <!-- <div class="row form-Group">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Date</span>
+                </div>
+                <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [bsConfig]="bsConfig"
+                  [minDate]="minDate" [ngClass]="{ 'is-invalid': submitted && f.date.invalid }">
+                <div class="input-group-append">
+                  <span class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                </div>
+                <div *ngIf="submitted && f.number.errors" class="invalid-feedback">
+                  <div *ngIf="f.number.errors.required">Valid Mobile Number is required</div>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="row form-Group">
                         <label for="validationTooltip01">Date</label>
                         <input class="form-control " #dp="bsDatepicker" placeholder="Date   " bsDatepicker
                             [bsConfig]="bsConfig" [minDate]="minDate"
@@ -72,24 +69,22 @@
                         <div *ngIf="f.date.errors.required">Valid Mobile Number is required</div>
                     </div>
                     <br/> -->
-                    <div class="form-group">
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text">Mobile No</span>
-                          </div>
-                          <input type="text"  class="form-control"
-                          formControlName='number'
-                          [pattern]="'[789][0-9]{9}'"
-                          [ngClass]="{ 'is-invalid': submitted && f.number.invalid }">
-                          <div class="input-group-append">
-                            <span class="input-group-text"><i class="fa fa-phone" aria-hidden="true"></i></span>
-                          </div>
-                          <div *ngIf="submitted && f.number.errors" class="invalid-feedback">
-                            <div *ngIf="f.number.errors.required">Valid Mobile Number is required</div>
-                        </div>
-                        </div>
-                        </div>
-                    <!-- <div class="row form-Group">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Mobile No</span>
+                </div>
+                <input type="text" class="form-control" formControlName='number' [pattern]="'[789][0-9]{9}'"
+                  [ngClass]="{ 'is-invalid': submitted && f.number.invalid }">
+                <div class="input-group-append">
+                  <span class="input-group-text"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                </div>
+                <div *ngIf="submitted && f.number.errors" class="invalid-feedback">
+                  <div *ngIf="f.number.errors.required">Valid Mobile Number is required</div>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="row form-Group">
                         <label for="validationTooltip01">Mobile Number</label>
                         <input type="number" class="form-control" formControlName='number'
                             placeholder="Mobile Number" [pattern]="'[789][0-9]{9}'"
@@ -100,27 +95,27 @@
                     </div>
 
                     <br /> -->
-                    <div class="form-group">
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text">Time</span>
-                          </div>
-                          <select formControlName="time" class="form-control"
-                            [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
-                            <option>09:00 - 12:00</option>
-                            <option>12:01 - 02:00</option>
-                            <option>02:01 - 04:00</option>
-                            <option>04:01 - 06:00</option>
-                            <option>06:01 - 08:00</option>
-                        </select>
-                            <span class="input-group-text"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
-                          <div *ngIf="submitted && f.time.errors" class="invalid-feedback">
-                            <div *ngIf="f.time.errors.required">Time is required</div>
-                        </div>
-                        </div>
-                        </div>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Time</span>
+                </div>
+                <select formControlName="time" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                  <option>09:00 - 12:00</option>
+                  <option>12:01 - 02:00</option>
+                  <option>02:01 - 04:00</option>
+                  <option>04:01 - 06:00</option>
+                  <option>06:01 - 08:00</option>
+                </select>
+                <span class="input-group-text"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+                <div *ngIf="submitted && f.time.errors" class="invalid-feedback">
+                  <div *ngIf="f.time.errors.required">Time is required</div>
+                </div>
+              </div>
+            </div>
 
-                    <!-- <div class="row form-Group">
+            <!-- <div class="row form-Group">
 
                         <label for="validationTooltip01">Select Time</label>
                         <select formControlName="time" class="form-control"
@@ -136,25 +131,24 @@
                         </div>
                     </div>
                     <br /> -->
-                    <div class="form-group">
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text">Address</span>
-                          </div>
-                          <input type="text"  class="form-control"
-                          formControlName="addresss1"
-                            placeholder="House/Flate number , House Name"
-                            [ngClass]="{ 'is-invalid': submitted && f.addresss1.invalid }"
-                          [ngClass]="{ 'is-invalid': submitted && f.number.invalid }">
-                          <div class="input-group-append">
-                            <span class="input-group-text"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
-                          </div>
-                          <div *ngIf="submitted && f.addresss1.errors" class="invalid-feedback">
-                            <div *ngIf="f.addresss1.errors.required">House/Flate number , House Name</div>
-                        </div>
-                        </div>
-                        </div>
-                    <!-- <div class="row form-Group">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Address</span>
+                </div>
+                <input type="text" class="form-control" formControlName="addresss1"
+                  placeholder="House/Flate number , House Name"
+                  [ngClass]="{ 'is-invalid': submitted && f.addresss1.invalid }"
+                  [ngClass]="{ 'is-invalid': submitted && f.number.invalid }">
+                <div class="input-group-append">
+                  <span class="input-group-text"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+                </div>
+                <div *ngIf="submitted && f.addresss1.errors" class="invalid-feedback">
+                  <div *ngIf="f.addresss1.errors.required">House/Flate number , House Name</div>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="row form-Group">
                         <label for="validationTooltip01">Address</label>
                         <input type="text" class="form-control" formControlName="addresss1"
                             placeholder="House/Flate number , House Name"
@@ -164,24 +158,22 @@
                         </div>
                     </div>
                     <br /> -->
-                    <div class="form-group">
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text">Landmark</span>
-                          </div>
-                          <input type="text"  class="form-control"
-                          formControlName="addresss2"
-                          [ngClass]="{ 'is-invalid': submitted && f.addresss2.invalid }"
-                          placeholder="Landmark">
-                          <div class="input-group-append">
-                            <span class="input-group-text"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
-                          </div>
-                          <div *ngIf="submitted && f.addresss1.errors" class="invalid-feedback">
-                            <div *ngIf="f.addresss1.errors.required">Landmark is required</div>
-                        </div>
-                        </div>
-                        </div>
-                    <!-- <div class="row form-Group">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Landmark</span>
+                </div>
+                <input type="text" class="form-control" formControlName="addresss2"
+                  [ngClass]="{ 'is-invalid': submitted && f.addresss2.invalid }" placeholder="Landmark">
+                <div class="input-group-append">
+                  <span class="input-group-text"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+                </div>
+                <div *ngIf="submitted && f.addresss1.errors" class="invalid-feedback">
+                  <div *ngIf="f.addresss1.errors.required">Landmark is required</div>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="row form-Group">
                         <label for="validationTooltip01"></label>
                         <input type="text" class="form-control" formControlName="addresss2"
                             [ngClass]="{ 'is-invalid': submitted && f.addresss2.invalid }"
@@ -191,44 +183,42 @@
                         </div>
                     </div>
                     <br /> -->
-                    
 
-                        <div class="row">
 
-                        
-                        <div class="form-group col-md-6">
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text">City</span>
-                              </div>
-                              <input type="text"  class="form-control"
-                              formControlName="state" placeholder="City"
-                                [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
-                              <div class="input-group-append">
-                                <span class="input-group-text"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
-                              </div>
-                              <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
-                                <div *ngIf="f.state.errors.required">State is required</div>
-                            </div>
-                            </div>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <div class="input-group">
-                                  <div class="input-group-prepend">
-                                    <span class="input-group-text">Pincode</span>
-                                  </div>
-                                  <input type="number"  class="form-control"  [pattern]="'[3][0-9]{5}'" 
-                                  formControlName="pincode" placeholder="Pin Code"
-                                [ngClass]="{ 'is-invalid': submitted && f.pincode.errors }">
-                                  <div class="input-group-append">
-                                    <span class="input-group-text"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
-                                  </div>
-                                  <div *ngIf="submitted && f.pincode.errors" class="invalid-feedback">
-                                    <div *ngIf="f.pincode.errors.required">Valid pincode is required</div>
-                                </div>
-                                </div>
-                                </div>
-                        <!-- <div class="form-Group col-md-4">
+            <div class="row">
+
+
+              <div class="form-group col-md-6">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">City</span>
+                  </div>
+                  <input type="text" class="form-control" formControlName="state" placeholder="City"
+                    [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+                  </div>
+                  <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+                    <div *ngIf="f.state.errors.required">State is required</div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Pincode</span>
+                  </div>
+                  <input type="number" class="form-control" [pattern]="'[3][0-9]{5}'" formControlName="pincode"
+                    placeholder="Pin Code" [ngClass]="{ 'is-invalid': submitted && f.pincode.errors }">
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+                  </div>
+                  <div *ngIf="submitted && f.pincode.errors" class="invalid-feedback">
+                    <div *ngIf="f.pincode.errors.required">Valid pincode is required</div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="form-Group col-md-4">
                             <label for="validationTooltip01">State</label>
                             <input type="text" class="form-control" formControlName="state" placeholder="State"
                                 [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
@@ -245,41 +235,52 @@
                                 <div *ngIf="f.pincode.errors.required">Valid pincode is required</div>
                             </div>
                         </div> -->
-                    </div>
-                    <div class="form-group form-check">
-                        <input type="checkbox" formControlName="acceptTerms" id="acceptTerms"
-                            class="form-check-input"
-                            [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }" />&nbsp;&nbsp;&nbsp;
-                        <label for="acceptTerms" class="form-check-label"> Accept Terms & Conditions</label>
-                        <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback">Accept Ts & Cs is
-                            required</div>
-                    </div>
-                    <div class="form-group form-actions ">
-                        <div class="row">
+            </div>
+            <div class="form-group form-check">
+              <input type="checkbox" formControlName="acceptTerms" id="acceptTerms" class="form-check-input"
+                [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }" />&nbsp;&nbsp;&nbsp;
+              <label for="acceptTerms" class="form-check-label"> Accept Terms & Conditions</label>
+              <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback">Accept Ts & Cs is
+                required</div>
+            </div>
+            <div class="form-group form-actions ">
+              <div class="row">
 
-                        <div class="col-md-6 text-center">
-                            <button type="submit" class="btn btn-sm btn-primary">Proceed To Pay</button>
-                        </div>
-                        <div class="col-md-6 pull-left ">
-                            <button type="reset" class="btn btn-sm btn-primary" (click)="onReset()">Cancle</button>
-                        </div>
-                    </div>
-                        
-                      </div>
+                <div class="col-md-6 text-center">
+                  <button type="submit" class="btn btn-sm btn-primary">Proceed To Pay</button>
+                </div>
+                <div class="col-md-6 pull-left ">
+                  <button type="reset" class="btn btn-sm btn-primary" (click)="onReset()">Cancle</button>
+                </div>
+              </div>
 
-                    <!-- <div class="row form-group">
+            </div>
+
+            <!-- <div class="row form-group">
                         <button class="btn btn-primary col-md-6">Register</button>
                         <button class="btn btn-secondary col-md-6" type="reset" (click)="onReset()">Cancel</button>
                     </div> -->
-                </form>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-body">
-               
-              </div>
-            </div>
+          </form>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <div class="modal-body">
+            <!-- <h2>Service Provider</h2> -->
+            <table class="table">
+
+              <!-- <tbody>
+                <tr>
+                  <td> hello</td>
+                  <td> rating</td>
+                  <td> hello</td>
+                </tr>
+              </tbody> -->
+            </table>
           </div>
+        </div>
+      </div>
     </div>
+  </div>
 
 </div>

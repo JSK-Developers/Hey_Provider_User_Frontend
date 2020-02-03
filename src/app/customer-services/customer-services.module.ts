@@ -6,15 +6,18 @@ import { CustomerServicesRoutingModule } from './customer-services-routing.modul
 import { CustomerServicesComponent } from './customer-services.component';
 import { CustomerServiceModelComponent } from './customer-service-models/customer-services-model.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { ACServiceModelComponent } from './AcRepairServices/AcRepairService.component';
 
 
 @NgModule({
     declarations: [
         CustomerServicesComponent,
-        CustomerServiceModelComponent
+        CustomerServiceModelComponent,
+        ACServiceModelComponent
     ],
     entryComponents: [
-        CustomerServiceModelComponent
+        CustomerServiceModelComponent,
+        ACServiceModelComponent
     ],
     imports: [
         BrowserModule,

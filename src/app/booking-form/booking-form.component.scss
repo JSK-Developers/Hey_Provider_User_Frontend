@@ -7,6 +7,9 @@ select.ng-invalid.ng-touched{
  .color{
      background-color: #f7f7f9;
  }
+ .colors{
+    z-index: 10px;
+}
 .myFooter {
       background: linear-gradient(rgba(27, 25, 25, 0.62), rgba(3, 0, 0, 0.9)), url(/assets/solar-panels-1920x500.jpg);
     
@@ -17,5 +20,5 @@ select.ng-invalid.ng-touched{
     padding-bottom: 130px;
 }
 .card{
-    background-color:#decdcd;
+    background-color:#f1e0e070;
 }
