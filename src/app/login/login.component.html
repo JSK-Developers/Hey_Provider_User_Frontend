@@ -24,7 +24,7 @@
                     <div class="card-group">
                         <div class="card p-4">
                             <div class="card-body">
-                                <form>
+                                <form [formGroup]='loginForm' class="needs-validation" (ngSubmit)="PostData(loginForm)">
                                     <h1>Login</h1>
                                     <p class="text-muted">Sign In to your account</p>
                                     <div class="input-group mb-3">
@@ -32,8 +32,13 @@
                                             <span class="input-group-text"><i class="fa fa-user"
                                                     aria-hidden="true"></i></span>
                                         </div>
-                                        <input type="text" class="form-control" placeholder="Username"
-                                            autocomplete="username" required>
+                                        <input type="text" class="form-control" placeholder="Email"
+                                            formControlName='username'
+                                            [ngClass]="{ 'is-invalid': submitted && f.username.invalid }">
+                                        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                                            <div *ngIf="f.username.errors.required">Valid Email is required</div>
+                                        </div>
+
                                     </div>
                                     <div class="input-group mb-4">
                                         <div class="input-group-prepend">
@@ -41,11 +46,15 @@
                                                     aria-hidden="true"></i></span>
                                         </div>
                                         <input type="password" class="form-control" placeholder="Password"
-                                            autocomplete="current-password" required>
+                                            formControlName='password'
+                                            [ngClass]="{ 'is-invalid': submitted && f.password.invalid }">
+                                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                            <div *ngIf="f.password.errors.required">Valid password is required</div>
+                                        </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-6">
-                                            <button type="button" class="btn btn-primary px-4">Login</button>
+                                            <button type="submit" class="btn btn-primary px-4">Login</button>
                                         </div>
                                         <div class="col-6 text-right">
                                             <button type="button" class="btn btn-link px-0">Forgot password?</button>
@@ -74,3 +83,11 @@
 <br>
 <br>
 <br>
+<table>
+    <tr *ngFor="let users of registration">
+        <td>{{users.name}}</td>
+        <td>{{users.age}}</td>
+        <td>{{users.email}}</td>
+        <td>{{users.password}}</td>
+    </tr>
+</table>

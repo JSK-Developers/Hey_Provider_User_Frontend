@@ -3,7 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // #####
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { BsDatepickerModule, ModalModule, TabsModule } from 'ngx-bootstrap'; // #####
+import { BsDatepickerModule, ModalModule, TabsModule, RatingModule } from 'ngx-bootstrap'; // #####
 import { AboutUsComponent } from './about-us/about-us.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ServiceFormComponent } from './service-form/service-form.component';
 import { ACServiceModelComponent } from './customer-services/AcRepairServices/AcRepairService.component';
 import { PaymentComponent } from './payment/payment.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -66,8 +67,11 @@ import { PaymentComponent } from './payment/payment.component';
     BrowserAnimationsModule,
     RouterModule,
     HttpClientModule,
+    NgbModule,
     ModalModule.forRoot(),
     TabsModule.forRoot(),
+    RatingModule.forRoot(),
+
     FormsModule, ReactiveFormsModule // #####
 
   ],

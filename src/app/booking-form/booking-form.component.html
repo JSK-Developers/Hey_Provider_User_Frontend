@@ -1,37 +1,124 @@
-<div class=" card-header">
+<form [formGroup]='bookingForm' class="needs-validation" (ngSubmit)="PostData(bookingForm)">
+  <div class=" card-header">
 
-  <div class="myFooter">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-      content.
-      <div class="">
-        <p> This content is a little bit longer.</p>
-        <p class="card-text">Last updated 3 mins ago</p>
-      </div>
+    <div class="myFooter">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+        content.
+        <div class="">
+          <p> This content is a little bit longer.</p>
+          <p class="card-text">Last updated 3 mins ago</p>
+        </div>
+    </div>
   </div>
-</div>
-<div class="card-body">
-  <div class="container">
-    <div class="card-deck">
-      <div class="card colors">
-        <div class="card-body">
-          <form [formGroup]='bookingForm' class="needs-validation" (ngSubmit)="PostData(bookingForm)">
-            <div class="form-group">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">Username</span>
-                </div>
-                <input type="text" class="form-control" formControlName="name" class="form-control"
-                  [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
-                <div class="input-group-append">
-                  <span class="input-group-text"><i class="fa fa-user"></i></span>
-                </div>
-                <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-                  <div *ngIf="f.name.errors.required">UserName is required</div>
+  <div class="card-body">
+    <div class="col-md-12">
+      <div class="container">
+
+        <div class="card" *ngIf="prizelist">
+          <div class="card-header">
+            <h2>Ac Servie</h2>
+          </div>
+          <div class="card-body">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td colspan="2" class="text-center">
+                    <h4>{{serviceName}}</h4>
+                  </td>
+                  <!-- (click)="updateCount(-1)" -->
+                  <td class="text-right"><i class="fa fa-rupee"></i> {{prize}}</td>
+                  <td class="text-center">
+                    <button (click)="updateCount(-1)" [disabled]="!count"> -</button>
+                    <!-- <button (click)="updateCount(-1)" *ngIf="show" [disabled]="!count"> #</button> -->
+                    {{count || 'Add'}}
+                    <button (click)="updateCount()"> +</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" class="text-center">
+                    <h4>{{serviceName1}}</h4>
+                  </td>
+                  <td class="text-right"><i class="fa fa-rupee"></i> {{prize1}}</td>
+                  <td class="text-center">
+                    <button (click)="updateCount1(-1)" [disabled]="!count1"> -</button>
+                    {{count1 || 'Add'}}
+                    <button (click)="updateCount1()"> +</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" class="text-center">
+                    <h4><i class="fa fa-snowflake-o" aria-hidden="true"></i> {{serviceName2}}</h4>
+                  </td>
+                  <td class="text-right"><i class="fa fa-rupee"></i> {{prize2}}</td>
+                  <td class="text-center">
+                    <button (click)="updateCount2(-1)" [disabled]="!count2"> -</button>
+                    {{count2 || 'Add'}}
+                    <button (click)="updateCount2()"> +</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" class="text-center">
+                    <h4> <i class="fa fa-power-off" aria-hidden="true"></i> &nbsp; {{serviceName3}}</h4>
+                  </td>
+                  <td class="text-right"><i class="fa fa-rupee"></i> {{prize3}}</td>
+                  <td class="text-center">
+                    <button (click)="updateCount3(-1)" [disabled]="!count3"> -</button>
+                    {{count3 || 'Add'}}
+                    <button (click)="updateCount3()"> +</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" class="text-center">
+                    <h4><i class="fa fa-volume-up" aria-hidden="true"></i>&nbsp; &nbsp;{{serviceName4}}</h4>
+                  </td>
+                  <td class="text-right"><i class="fa fa-rupee"></i> {{prize4}}</td>
+                  <td class="text-center">
+                    <button (click)="updateCount4(-1)" [disabled]="!count4"> -</button>
+                    {{count4 || 'Add'}}
+                    <button (click)="updateCount4()"> +</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" class="text-center">
+                    <h4><i class="fa fa-tint"></i>{{serviceName5}}</h4>
+                  </td>
+                  <td class="text-right"><i class="fa fa-rupee"></i> {{prize5}}</td>
+                  <td class="text-center">
+                    <button (click)="updateCount5(-1)" [disabled]="!count5"> -</button>
+                    {{count5 || 'Add'}}
+                    <button (click)="updateCount5()"> +</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <button type="button" (click)="finalvalue()"> Confirm </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="card-deck" *ngIf="address_provider">
+
+          <!-- card for address -->
+          <div class="card colors">
+            <div class="card-body">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Username</span>
+                  </div>
+                  <input type="text" class="form-control" formControlName="name" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-user"></i></span>
+                  </div>
+                  <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                    <div *ngIf="f.name.errors.required">UserName is required</div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <!-- <div class=" form-Group">
+              <!-- <div class=" form-Group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><span class="input-group-text">Username</span></span>
                         </div>
@@ -44,22 +131,22 @@
                             <div *ngIf="f.name.errors.required">UserName is required</div>
                         </div>
                     </div> -->
-            <div class="form-group">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">Date</span>
-                </div>
-                <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [bsConfig]="bsConfig"
-                  [minDate]="minDate" [ngClass]="{ 'is-invalid': submitted && f.date.invalid }">
-                <div class="input-group-append">
-                  <span class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-                </div>
-                <div *ngIf="submitted && f.number.errors" class="invalid-feedback">
-                  <div *ngIf="f.number.errors.required">Valid Mobile Number is required</div>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Date</span>
+                  </div>
+                  <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [bsConfig]="bsConfig"
+                    [minDate]="minDate" [ngClass]="{ 'is-invalid': submitted && f.date.invalid }">
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                  </div>
+                  <div *ngIf="submitted && f.number.errors" class="invalid-feedback">
+                    <div *ngIf="f.number.errors.required">Valid Mobile Number is required</div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <!-- <div class="row form-Group">
+              <!-- <div class="row form-Group">
                         <label for="validationTooltip01">Date</label>
                         <input class="form-control " #dp="bsDatepicker" placeholder="Date   " bsDatepicker
                             [bsConfig]="bsConfig" [minDate]="minDate"
@@ -69,22 +156,22 @@
                         <div *ngIf="f.date.errors.required">Valid Mobile Number is required</div>
                     </div>
                     <br/> -->
-            <div class="form-group">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">Mobile No</span>
-                </div>
-                <input type="text" class="form-control" formControlName='number' [pattern]="'[789][0-9]{9}'"
-                  [ngClass]="{ 'is-invalid': submitted && f.number.invalid }">
-                <div class="input-group-append">
-                  <span class="input-group-text"><i class="fa fa-phone" aria-hidden="true"></i></span>
-                </div>
-                <div *ngIf="submitted && f.number.errors" class="invalid-feedback">
-                  <div *ngIf="f.number.errors.required">Valid Mobile Number is required</div>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Mobile No</span>
+                  </div>
+                  <input type="text" class="form-control" formControlName='number' [pattern]="'[789][0-9]{9}'"
+                    [ngClass]="{ 'is-invalid': submitted && f.number.invalid }">
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                  </div>
+                  <div *ngIf="submitted && f.number.errors" class="invalid-feedback">
+                    <div *ngIf="f.number.errors.required">Valid Mobile Number is required</div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <!-- <div class="row form-Group">
+              <!-- <div class="row form-Group">
                         <label for="validationTooltip01">Mobile Number</label>
                         <input type="number" class="form-control" formControlName='number'
                             placeholder="Mobile Number" [pattern]="'[789][0-9]{9}'"
@@ -95,27 +182,27 @@
                     </div>
 
                     <br /> -->
-            <div class="form-group">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">Time</span>
-                </div>
-                <select formControlName="time" class="form-control"
-                  [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
-                  <option>09:00 - 12:00</option>
-                  <option>12:01 - 02:00</option>
-                  <option>02:01 - 04:00</option>
-                  <option>04:01 - 06:00</option>
-                  <option>06:01 - 08:00</option>
-                </select>
-                <span class="input-group-text"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
-                <div *ngIf="submitted && f.time.errors" class="invalid-feedback">
-                  <div *ngIf="f.time.errors.required">Time is required</div>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Time</span>
+                  </div>
+                  <select formControlName="time" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                    <option>09:00 - 12:00</option>
+                    <option>12:01 - 02:00</option>
+                    <option>02:01 - 04:00</option>
+                    <option>04:01 - 06:00</option>
+                    <option>06:01 - 08:00</option>
+                  </select>
+                  <span class="input-group-text"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+                  <div *ngIf="submitted && f.time.errors" class="invalid-feedback">
+                    <div *ngIf="f.time.errors.required">Time is required</div>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <!-- <div class="row form-Group">
+              <!-- <div class="row form-Group">
 
                         <label for="validationTooltip01">Select Time</label>
                         <select formControlName="time" class="form-control"
@@ -131,24 +218,24 @@
                         </div>
                     </div>
                     <br /> -->
-            <div class="form-group">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">Address</span>
-                </div>
-                <input type="text" class="form-control" formControlName="addresss1"
-                  placeholder="House/Flate number , House Name"
-                  [ngClass]="{ 'is-invalid': submitted && f.addresss1.invalid }"
-                  [ngClass]="{ 'is-invalid': submitted && f.number.invalid }">
-                <div class="input-group-append">
-                  <span class="input-group-text"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
-                </div>
-                <div *ngIf="submitted && f.addresss1.errors" class="invalid-feedback">
-                  <div *ngIf="f.addresss1.errors.required">House/Flate number , House Name</div>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Address</span>
+                  </div>
+                  <input type="text" class="form-control" formControlName="addresss1"
+                    placeholder="House/Flate number , House Name"
+                    [ngClass]="{ 'is-invalid': submitted && f.addresss1.invalid }"
+                    [ngClass]="{ 'is-invalid': submitted && f.number.invalid }">
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+                  </div>
+                  <div *ngIf="submitted && f.addresss1.errors" class="invalid-feedback">
+                    <div *ngIf="f.addresss1.errors.required">House/Flate number , House Name</div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <!-- <div class="row form-Group">
+              <!-- <div class="row form-Group">
                         <label for="validationTooltip01">Address</label>
                         <input type="text" class="form-control" formControlName="addresss1"
                             placeholder="House/Flate number , House Name"
@@ -158,22 +245,22 @@
                         </div>
                     </div>
                     <br /> -->
-            <div class="form-group">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">Landmark</span>
-                </div>
-                <input type="text" class="form-control" formControlName="addresss2"
-                  [ngClass]="{ 'is-invalid': submitted && f.addresss2.invalid }" placeholder="Landmark">
-                <div class="input-group-append">
-                  <span class="input-group-text"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
-                </div>
-                <div *ngIf="submitted && f.addresss1.errors" class="invalid-feedback">
-                  <div *ngIf="f.addresss1.errors.required">Landmark is required</div>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Landmark</span>
+                  </div>
+                  <input type="text" class="form-control" formControlName="addresss2"
+                    [ngClass]="{ 'is-invalid': submitted && f.addresss2.invalid }" placeholder="Landmark">
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+                  </div>
+                  <div *ngIf="submitted && f.addresss1.errors" class="invalid-feedback">
+                    <div *ngIf="f.addresss1.errors.required">Landmark is required</div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <!-- <div class="row form-Group">
+              <!-- <div class="row form-Group">
                         <label for="validationTooltip01"></label>
                         <input type="text" class="form-control" formControlName="addresss2"
                             [ngClass]="{ 'is-invalid': submitted && f.addresss2.invalid }"
@@ -185,40 +272,40 @@
                     <br /> -->
 
 
-            <div class="row">
+              <div class="row">
 
 
-              <div class="form-group col-md-6">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">City</span>
-                  </div>
-                  <input type="text" class="form-control" formControlName="state" placeholder="City"
-                    [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
-                  <div class="input-group-append">
-                    <span class="input-group-text"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
-                  </div>
-                  <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
-                    <div *ngIf="f.state.errors.required">State is required</div>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group col-md-6">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">Pincode</span>
-                  </div>
-                  <input type="number" class="form-control" [pattern]="'[3][0-9]{5}'" formControlName="pincode"
-                    placeholder="Pin Code" [ngClass]="{ 'is-invalid': submitted && f.pincode.errors }">
-                  <div class="input-group-append">
-                    <span class="input-group-text"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
-                  </div>
-                  <div *ngIf="submitted && f.pincode.errors" class="invalid-feedback">
-                    <div *ngIf="f.pincode.errors.required">Valid pincode is required</div>
+                <div class="form-group col-md-6">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">City</span>
+                    </div>
+                    <input type="text" class="form-control" formControlName="state" placeholder="City"
+                      [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+                    </div>
+                    <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+                      <div *ngIf="f.state.errors.required">State is required</div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <!-- <div class="form-Group col-md-4">
+                <div class="form-group col-md-6">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Pincode</span>
+                    </div>
+                    <input type="number" class="form-control" [pattern]="'[3][0-9]{5}'" formControlName="pincode"
+                      placeholder="Pin Code" [ngClass]="{ 'is-invalid': submitted && f.pincode.errors }">
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+                    </div>
+                    <div *ngIf="submitted && f.pincode.errors" class="invalid-feedback">
+                      <div *ngIf="f.pincode.errors.required">Valid pincode is required</div>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="form-Group col-md-4">
                             <label for="validationTooltip01">State</label>
                             <input type="text" class="form-control" formControlName="state" placeholder="State"
                                 [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
@@ -235,52 +322,161 @@
                                 <div *ngIf="f.pincode.errors.required">Valid pincode is required</div>
                             </div>
                         </div> -->
-            </div>
-            <div class="form-group form-check">
-              <input type="checkbox" formControlName="acceptTerms" id="acceptTerms" class="form-check-input"
-                [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }" />&nbsp;&nbsp;&nbsp;
-              <label for="acceptTerms" class="form-check-label"> Accept Terms & Conditions</label>
-              <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback">Accept Ts & Cs is
-                required</div>
-            </div>
-            <div class="form-group form-actions ">
-              <div class="row">
+              </div>
+              <div class="form-group form-check">
+                <input type="checkbox" formControlName="acceptTerms" id="acceptTerms" class="form-check-input"
+                  [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }" />&nbsp;&nbsp;&nbsp;
+                <label for="acceptTerms" class="form-check-label"> Accept Terms & Conditions</label>
+                <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback">Accept Ts & Cs is
+                  required</div>
+              </div>
+              <div class="form-group form-actions ">
+                <div class="row">
 
-                <div class="col-md-6 text-center">
-                  <button type="submit" class="btn btn-sm btn-primary" >Proceed To Pay</button>
+                  <div class="col-md-6 text-center">
+                    <button type="submit" class="btn btn-sm btn-primary" (click)="onNext()">Proceed To Pay</button>
+                  </div>
+                  <div class="col-md-6 pull-left ">
+                    <button type="reset" class="btn btn-sm btn-primary" (click)="onReset()">Cancle</button>
+                  </div>
                 </div>
-                <div class="col-md-6 pull-left ">
-                  <button type="reset" class="btn btn-sm btn-primary" (click)="onReset()">Cancle</button>
-                </div>
+
               </div>
 
-            </div>
-
-            <!-- <div class="row form-group">
+              <!-- <div class="row form-group">
                         <button class="btn btn-primary col-md-6">Register</button>
                         <button class="btn btn-secondary col-md-6" type="reset" (click)="onReset()">Cancel</button>
                     </div> -->
-          </form>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-body">
-          <div class="modal-body">
-            <!-- <h2>Service Provider</h2> -->
-            <table class="table">
+            </div>
+          </div>
+          <!-- card for provider list -->
+          <div class="card">
+            <div class="card-body">
+              <!-- <h2>Service Provider</h2> -->
+              <!-- <table class="table">
 
-              <!-- <tbody>
-                <tr>
-                  <td> hello</td>
-                  <td> rating</td>
-                  <td> hello</td>
+                <tr *ngFor="let users of providers">
+                  <td>{{users.name}}</td>
+                  <td>{{users.age}}</td>
+                  <td>{{users.age}}</td>
+                  <td>{{user.email}}</td>
+                <td>{{user.password}}</td>
+                <td>{{user.address}}</td>
+                <td>{{user.address2}}</td>
+                <td>{{user.city}}</td>
+                <td>{{user.pincode}}</td>
                 </tr>
-              </tbody> -->
-            </table>
+              </table> -->
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Age</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- <tr *ngFor="let users of providers"> -->
+                  <tr>
+                    <td> {{providername1}}</td>
+                    <td> {{age1}}</td>
+                  </tr>
+                  <tr>
+                    <td> {{providername2}}</td>
+                    <td> {{age2}}</td>
+                  </tr>
+                  <tr>
+                    <td> {{providername3}}</td>
+                    <td> {{age3}}</td>
+                  </tr>
+                  <tr>
+
+                  </tr>
+                  <!-- <th scope="row">{{ users.name }}</th>
+                    <td>{{ users.age }}</td>
+                    <td>{{ users.rating | number}}</td>
+                    <td> <input type="button" value="Select"> -->
+                  <!-- </td> -->
+                  <!--  -->
+
+                  <!-- <td>{{ country.population | number }}</td> -->
+                </tbody>
+              </table>
+              <!-- <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
+              </ngb-pagination> -->
+            </div>
           </div>
         </div>
       </div>
+
+      <!-- card for payment  -->
+      <div class="container">
+
+        <div class="card" *ngIf="payment_display">
+          <div class="card-header">
+            <h2>Payment Details</h2>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-xs-12 col-md-4 col-md-offset-4">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <div class="row">
+                      <img class="img-responsive cc-img"
+                        src="http://www.prepbootstrap.com/Content/images/shared/misc/creditcardicons.png">
+                    </div>
+                  </div>
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-xs-12">
+                        <div class="form-group">
+                          <label>CARD NUMBER</label>
+                          <div class="input-group">
+                            <input type="tel" class="form-control" placeholder="Valid Card Number" />
+                            <span class="input-group-addon"><span class="fa fa-credit-card"></span></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-7 col-md-7">
+                        <div class="form-group">
+                          <label><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span>
+                            DATE</label>
+                          <input type="tel" class="form-control" placeholder="MM / YY" />
+                        </div>
+                      </div>
+                      <div class="col-xs-5 col-md-5 pull-right">
+                        <div class="form-group">
+                          <label>CV CODE</label>
+                          <input type="tel" class="form-control" placeholder="CVC" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-12">
+                        <div class="form-group">
+                          <label>CARD OWNER</label>
+                          <input type="text" class="form-control" placeholder="Card Owner Names" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel-footer">
+                    <div class="row">
+                      <div class="col-xs-12">
+                        <button class="btn btn-warning btn-lg btn-block" (click)="thanx()">Process
+                          payment</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
-
-</div>
+</form>
