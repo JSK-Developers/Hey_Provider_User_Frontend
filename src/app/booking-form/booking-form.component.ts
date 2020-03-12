@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, NgForm, Validators } from '@angular/forms';
 import { BsDatepickerConfig, BsModalService } from 'ngx-bootstrap';
 import { Observable } from 'rxjs';
 import { ACregistrationfield } from './bookingfield';
-import { Router } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { HttpservicesService } from '../Http_Services_Api/httpservices.service';
 import { CustomerServicesComponent } from '../customer-services/customer-services.component';
 import { Providers } from './providerList';
@@ -15,7 +15,7 @@ import { Providers } from './providerList';
 })
 export class BookingFormComponent {
 
-
+  username = "";
   message = 'helloworld'
   welcomeMessageFromService: string
   hello: 'smit'
@@ -23,12 +23,11 @@ export class BookingFormComponent {
   name: string = "";
   // email: string = "";
   number: string = "";
-  date: string = "";
+  date: any = "";
   time: string = "";
   addresss1: string = "";
-  addresss2: string = "";
+  landmark: string = "";
   city: string = "";
-  state: string = "";
   pincode: string = "";
   submitted: boolean = false;
   datePipe: Date;
@@ -63,29 +62,28 @@ export class BookingFormComponent {
   prize3 = 100;
   prize4 = 100;
   prize5 = 100;
-  ratiing1 = 3;
-  ratiing2 = 2;
-  ratiing3 = 4;
-  providername1 = "Joshi Nisarg";
-  providername2 = "Chintan Rana";
-  providername3 = "Sathwara Bijesh";
-  age1 = "21";
-  age2 = "21";
-  age3 = "21";
-
+  providerid: any = '';
   customerModel: CustomerServicesComponent;
   prizelist = true;
   address_provider = false;
   payment_display = false;
-
+  starting_otp = Math.floor(100000 + Math.random() * 900000);
+  ending_otp = Math.floor(100000 + Math.random() * 900000);
   constructor(formbulder: FormBuilder,
-    private userRegistrationServices: HttpservicesService) {
+    private userRegistrationServices: HttpservicesService,
+    private router: Router) {
+    this.username = userRegistrationServices.username;
+    console.log(this.username);
+    console.log(this.starting_otp);
+    console.log(this.ending_otp);
+
+
     this.prizelist = true;
     this.address_provider = false;
     this.payment_display = false;
     this.bsConfig = Object.assign({}, { containerClass: this.colorTheme });
     this.minDate = new Date();
-    this.minDate.setDate(this.minDate.getDate() + 1);
+    this.minDate.setDate(this.minDate.getDate());
     this.bookingForm = formbulder.group({
       name: ['', Validators.required],
       email: ['', Validators.compose([
@@ -96,22 +94,30 @@ export class BookingFormComponent {
       date: ['', Validators.required],
       time: ['', Validators.required],
       addresss1: ['', Validators.required],
-      addresss2: ['', Validators.required],
+      landmark: ['', Validators.required],
       city: ['', Validators.required],
-      state: ['', Validators.required],
       pincode: ['', [Validators.required, Validators.pattern(/^(\d{6}|\w+([\.-]?\w+))$/)]],
       acceptTerms: [false, Validators.requiredTrue],
     })
     this.ACregistrationfield = {
       name: '',
-      number: '',
+      number: null,
       date: '',
       time: '',
       addresss1: '',
-      addresss2: '',
+      landmark: '',
       city: '',
-      state: '',
-      pincode: '',
+      pincode: null,
+      providerid: null,
+      userid: null,
+      end_services_otp: null,
+      window_ac_service: null,
+      split_ac_service: null,
+      less_no_cooling: null,
+      ac_not_starting: null,
+      noise_issue: null,
+      water_leakege: null,
+      total: null,
     }
   }
   get f() {
@@ -123,39 +129,59 @@ export class BookingFormComponent {
 
   }
   PostData(bookingForm: NgForm) {
-
-
     console.log(bookingForm.controls);
     this.submitted = true;
+    this.userRegistrationServices.getRegistrationListByName(this.username).subscribe(
+      data => {
+        this.ACregistrationfield.userid = data[0].id;
+        this.ACregistrationfield.name = this.bookingForm.get('name').value;
+        this.ACregistrationfield.number = this.bookingForm.get('number').value;
+        this.ACregistrationfield.date = this.bookingForm.get('date').value;
+        this.ACregistrationfield.time = this.bookingForm.get('time').value;
+        this.ACregistrationfield.addresss1 = this.bookingForm.get('addresss1').value;
+        this.ACregistrationfield.landmark = this.bookingForm.get('landmark').value;
+        this.ACregistrationfield.pincode = this.bookingForm.get('pincode').value;
+        this.ACregistrationfield.city = this.bookingForm.get('city').value;
+        this.ACregistrationfield.providerid = this.providerid;
+        this.ACregistrationfield.window_ac_service = this.count;
+        this.ACregistrationfield.split_ac_service = this.count1;
+        this.ACregistrationfield.less_no_cooling = this.count2;
+        this.ACregistrationfield.ac_not_starting = this.count3;
+        this.ACregistrationfield.noise_issue = this.count4;
+        this.ACregistrationfield.water_leakege = this.count5;
+        this.ACregistrationfield.total = this.total;
+        this.ACregistrationfield.end_services_otp = this.ending_otp;
+        this.save();
+      })
 
-    this.ACregistrationfield.name = this.bookingForm.get('name').value;
-    this.ACregistrationfield.number = this.bookingForm.get('number').value;
-    this.ACregistrationfield.date = this.bookingForm.get('date').value;
-    this.ACregistrationfield.time = this.bookingForm.get('time').value;
-    this.ACregistrationfield.addresss1 = this.bookingForm.get('addresss1').value;
-    this.ACregistrationfield.addresss2 = this.bookingForm.get('addresss2').value;
-    this.ACregistrationfield.city = this.bookingForm.get('city').value;
-    this.ACregistrationfield.pincode = this.bookingForm.get('pincode').value;
-    this.ACregistrationfield.state = this.bookingForm.get('state').value;
+  }
+  save() {
     this.userRegistrationServices.ACservicebook(this.ACregistrationfield).subscribe(() => {
       console.log('register success');
+      this.router.navigate(['/thankYou'])
     }, () => {
       console.log("error");
     }
     )
-
   }
   // createbook(book: BookingFormComponent) {
   //   this.bookingservices.servicebook(book).subscribe
   // }
-
+  deleteUser(id) {
+    console.log(id);
+    this.providerid = id;
+  }
   onReset() {
     this.submitted = false;
     this.bookingForm.reset();
   }
   onNext() {
-    this.address_provider = false;
-    this.payment_display = true;
+
+    if (this.bookingForm.valid) {
+      this.address_provider = false;
+      this.payment_display = true;
+      this.PostData(this.bookingForm.value);
+    }
   }
   updateCount(adjustment = 1) {
     this.values = (this.count += adjustment) * this.prize;

@@ -27,6 +27,9 @@ import { ServiceFormComponent } from './service-form/service-form.component';
 import { ACServiceModelComponent } from './customer-services/AcRepairServices/AcRepairService.component';
 import { PaymentComponent } from './payment/payment.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RoutGardServices } from './Http_Services_Api/routGard.service';
+import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { ThankYouPageComponent } from './thank-you-page/thank-you-page.component';
 
 
 
@@ -52,7 +55,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     UserRegistrationComponent,
     ServiceFormComponent,
     ACServiceModelComponent,
-    PaymentComponent
+    PaymentComponent,
+    MyOrdersComponent,
+    ThankYouPageComponent
   ],
   entryComponents: [
     CustomerServiceModelComponent,
@@ -77,7 +82,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   ],
 
   providers: [
-    HttpservicesService
+    HttpservicesService,
+    RoutGardServices,
   ],
   bootstrap: [AppComponent]
 })
