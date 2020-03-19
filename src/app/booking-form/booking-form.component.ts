@@ -98,6 +98,7 @@ export class BookingFormComponent {
       city: ['', Validators.required],
       pincode: ['', [Validators.required, Validators.pattern(/^(\d{6}|\w+([\.-]?\w+))$/)]],
       acceptTerms: [false, Validators.requiredTrue],
+      activeStatus: [0],
     })
     this.ACregistrationfield = {
       name: '',
@@ -118,6 +119,7 @@ export class BookingFormComponent {
       noise_issue: null,
       water_leakege: null,
       total: null,
+      activeStatus: 0
     }
   }
   get f() {
@@ -150,6 +152,7 @@ export class BookingFormComponent {
         this.ACregistrationfield.noise_issue = this.count4;
         this.ACregistrationfield.water_leakege = this.count5;
         this.ACregistrationfield.total = this.total;
+        this.ACregistrationfield.activeStatus = 0;
         this.ACregistrationfield.end_services_otp = this.ending_otp;
         this.save();
       })

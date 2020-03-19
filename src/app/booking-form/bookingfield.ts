@@ -18,6 +18,7 @@ export class ACregistrationfield {
     noise_issue: Number;
     water_leakege: Number;
     total: Number;
+    activeStatus: number;
 
 }
 export class RegistrationField {
