@@ -13,6 +13,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { RoutGardServices } from './Http_Services_Api/routGard.service';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { ThankYouPageComponent } from './thank-you-page/thank-you-page.component';
+import { CareersComponent } from './careers/careers.component';
 // const routes: Routes = [
 //   {
 //     path: '',
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'contactUs', component: ContactusComponent },
   { path: 'aboutUs', component: AboutUsComponent },
   { path: 'logout', component: LogoutComponent },
+  { path: 'careers', component: CareersComponent },
   { path: 'service-form', component: ServiceFormComponent },
   { path: 'payment', component: PaymentComponent },
   { path: 'thankYou', component: ThankYouPageComponent },

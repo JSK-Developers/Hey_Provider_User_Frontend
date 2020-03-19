@@ -30,6 +30,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RoutGardServices } from './Http_Services_Api/routGard.service';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { ThankYouPageComponent } from './thank-you-page/thank-you-page.component';
+import { CareersComponent } from './careers/careers.component';
 
 
 
@@ -57,7 +58,8 @@ import { ThankYouPageComponent } from './thank-you-page/thank-you-page.component
     ACServiceModelComponent,
     PaymentComponent,
     MyOrdersComponent,
-    ThankYouPageComponent
+    ThankYouPageComponent,
+    CareersComponent
   ],
   entryComponents: [
     CustomerServiceModelComponent,
