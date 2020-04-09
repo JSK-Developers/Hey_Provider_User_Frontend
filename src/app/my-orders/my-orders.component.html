@@ -1,1 +1,27 @@
-<p>my-orders works!</p>
+<div class="container">
+    <div *ngFor="let user of userOrderDetail">
+        <div class="card">
+            <div class="card-header">
+                <div class="raw">
+                    <!-- <table>
+                        <tr>
+                            <td >Order Id: {{user.id}}</td>
+                            <td>OTP :{{user.end_services_otp}}</td>
+                        </tr>
+                    </table> -->
+                    <div class="raw">
+                        <b>Order Id:</b> {{user.id}}
+                        <span class="pull-right"><b>OTP: </b>{{user.end_services_otp}}</span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="raw">
+                    <div class="col-md-6"></div>
+                    <div class="col-md-6"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

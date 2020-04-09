@@ -19,13 +19,11 @@ export class UserRegistrationComponent implements OnInit {
       userName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
-      confirmPassword: ['', Validators.required]
     })
     this.registrationfield = {
       userName: '',
       email: '',
       password: '',
-      confirmPassword: ''
       // number: '',
       // date: '',
       //time: '',
@@ -45,31 +43,28 @@ export class UserRegistrationComponent implements OnInit {
 
   PostData(registrationForm: NgForm) {
     this.submitted = true;
-    if (this.registrationForm.get('password').value == this.registrationForm.get('confirmPassword').value) {
 
 
 
-      if (this.registrationForm.valid) {
+    if (this.registrationForm.valid) {
 
 
-        this.registrationfield.userName = this.registrationForm.get('userName').value;
-        this.registrationfield.email = this.registrationForm.get('email').value;
-        this.registrationfield.password = this.registrationForm.get('password').value;
-        this.registrationfield.confirmPassword = this.registrationForm.get('confirmPassword').value;
-        this.userRegistrationServices.registration(this.registrationfield).subscribe(registrationForm => {
-          console.log('register success');
-        }, error => {
-          console.log("error");
-        }
-        )
-        this.router.navigate(['login']);
+      this.registrationfield.userName = this.registrationForm.get('userName').value;
+      this.registrationfield.email = this.registrationForm.get('email').value;
+      this.registrationfield.password = this.registrationForm.get('password').value;
+      this.userRegistrationServices.registration(this.registrationfield).subscribe(registrationForm => {
+        console.log('register success');
+      }, error => {
+        console.log("error");
       }
+      )
+      this.router.navigate(['login']);
+
     } else {
       alert('password not match');
     }
 
   }
-
 
 }
 

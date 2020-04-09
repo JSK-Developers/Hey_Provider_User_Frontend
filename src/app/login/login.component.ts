@@ -11,50 +11,61 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
   islogin: boolean = false;
   loginForm: FormGroup;
-  userNames = "";
-  passwords = "";
+  userName = "";
+  password = "";
   submitted: boolean = false;
   registration = [];
   datauname;
   datapass;
 
-  getlist(name) {
-    this.userRegistrationServices.getRegistrationListByName(name).subscribe(
-      data => {
-        if (data[0] != null) {
-          this.registration = data;
-          this.datauname = data[0].userName;
-          this.datapass = data[0].password;
-          if (this.passwords == this.datapass && this.userNames == this.datauname) {
-            this.userRegistrationServices.sessonstorage(this.userNames)
-            this.router.navigate(['home']);
-            // sessionStorage.setItem('authenticateUser', this.userNames);
-          } else {
-            alert("please try again");
-          }
-          console.log(data[0].userName);
-        } else {
-          alert("not valid")
-        }
-      }
-    )
-  }
+  // getlist(name) {
+  //   this.userRegistrationServices.getRegistrationListByName(name).subscribe(
+  //     data => {
+  //       if (data[0] != null) {
+  //         this.registration = data;
+  //         this.datauname = data[0].userName;
+  //         this.datapass = data[0].password;
+  //         if (this.passwords == this.datapass && this.userNames == this.datauname) {
+  //           this.userRegistrationServices.sessonstorage(this.userNames)
+  //           this.router.navigate(['home']);
+  //           // sessionStorage.setItem('authenticateUser', this.userNames);
+  //         } else {
+  //           alert("please try again");
+  //         }
+  //         console.log(data[0].userName);
+  //       } else {
+  //         alert("not valid")
+  //       }
+  //     }
+  //   )
+  // }
   get f() {
     return this.loginForm.controls;
   }
+  check: any;
+  checkError: any = false;
+  PostData() {
+    this.userRegistrationServices.authenticate(this.userName, this.password).subscribe(
+      data => {
+        console.log(data);
+        this.check = data;
+        if (this.check == true) {
+          localStorage.setItem('UserName', this.userName);
+          sessionStorage.setItem('AUTHENTICATED_USER', this.userName);
+          this.router.navigate(['home']);
+        } else {
+          this.checkError = true;
+        }
 
-
-  PostData(loginForm) {
-    this.submitted = true;
-    if (this.loginForm.valid) {
-      this.userNames = this.loginForm.get('userNames').value;
-      this.passwords = this.loginForm.get('passwords').value;
-      this.getlist(this.loginForm.get('userNames').value);
-      // console.log(this.registration.find('name').value)
-    }
-
-
+      },
+      error => {
+        console.log(error)
+      }
+    );
   }
+
+
+
 
   constructor(private router: Router, private userRegistrationServices: HttpservicesService, formbulder: FormBuilder) {
     this.loginForm = formbulder.group({

@@ -31,6 +31,11 @@ import { RoutGardServices } from './Http_Services_Api/routGard.service';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { ThankYouPageComponent } from './thank-you-page/thank-you-page.component';
 import { CareersComponent } from './careers/careers.component';
+import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-conditions.component';
+import { DatePipe } from '@angular/common';
+import { BlogComponent } from './blog/blog.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { BecomeProfessionalComponent } from './become-professional/become-professional.component';
 
 
 
@@ -59,7 +64,12 @@ import { CareersComponent } from './careers/careers.component';
     PaymentComponent,
     MyOrdersComponent,
     ThankYouPageComponent,
-    CareersComponent
+    CareersComponent,
+    TermsAndConditionsComponent,
+    BlogComponent,
+    PrivacyPolicyComponent,
+    BecomeProfessionalComponent,
+
   ],
   entryComponents: [
     CustomerServiceModelComponent,
@@ -86,6 +96,7 @@ import { CareersComponent } from './careers/careers.component';
   providers: [
     HttpservicesService,
     RoutGardServices,
+    DatePipe,
   ],
   bootstrap: [AppComponent]
 })

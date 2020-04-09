@@ -13,7 +13,6 @@ export class RoutGardServices implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         if (this.httpservices.isUserLoggedIn()) {
-
             return true;
         } else {
             this.router.navigate(['login']);

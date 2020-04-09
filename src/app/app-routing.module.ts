@@ -14,6 +14,10 @@ import { RoutGardServices } from './Http_Services_Api/routGard.service';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { ThankYouPageComponent } from './thank-you-page/thank-you-page.component';
 import { CareersComponent } from './careers/careers.component';
+import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-conditions.component';
+import { BlogComponent } from './blog/blog.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { BecomeProfessionalComponent } from './become-professional/become-professional.component';
 // const routes: Routes = [
 //   {
 //     path: '',
@@ -39,6 +43,10 @@ const routes: Routes = [
   { path: 'service-form', component: ServiceFormComponent },
   { path: 'payment', component: PaymentComponent },
   { path: 'thankYou', component: ThankYouPageComponent },
+  { path: 'terms', component: TermsAndConditionsComponent },
+  { path: 'privacyPolicy', component: PrivacyPolicyComponent },
+  { path: 'becomeProfessional', component: BecomeProfessionalComponent },
+  { path: 'blog', component: BlogComponent },
   { path: '**', component: ErrorComponent },
 ];
 

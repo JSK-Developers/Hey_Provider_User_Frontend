@@ -23,7 +23,6 @@ export class BookingFormComponent {
   name: string = "";
   // email: string = "";
   number: string = "";
-  date: any = "";
   time: string = "";
   addresss1: string = "";
   landmark: string = "";
@@ -73,7 +72,6 @@ export class BookingFormComponent {
     private userRegistrationServices: HttpservicesService,
     private router: Router) {
     this.username = userRegistrationServices.username;
-    console.log(this.username);
     console.log(this.starting_otp);
     console.log(this.ending_otp);
 
@@ -86,10 +84,10 @@ export class BookingFormComponent {
     this.minDate.setDate(this.minDate.getDate());
     this.bookingForm = formbulder.group({
       name: ['', Validators.required],
-      email: ['', Validators.compose([
-        Validators.required,
-        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
-      ])],
+      // email: ['', Validators.compose([
+      //   Validators.required,
+      //   Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+      // ])],
       number: ['', [Validators.required, Validators.pattern(/^(\d{10}|\w+([\.-]?\w+))$/)]],
       date: ['', Validators.required],
       time: ['', Validators.required],
@@ -128,14 +126,25 @@ export class BookingFormComponent {
 
   ngOnInit() {
     this.getlist();
-
+    this.loginid();
+  }
+  loginid() {
+    this.userRegistrationServices.getUserId().subscribe(
+      data => {
+        console.log(data);
+      }
+    )
   }
   PostData(bookingForm: NgForm) {
     console.log(bookingForm.controls);
     this.submitted = true;
-    this.userRegistrationServices.getRegistrationListByName(this.username).subscribe(
+    // this.userRegistrationServices.getRegistrationListByName(this.username).subscribe(
+    //   data => {
+
+    this.userRegistrationServices.getUserId().subscribe(
       data => {
-        this.ACregistrationfield.userid = data[0].id;
+        const userid = data;
+        this.ACregistrationfield.userid = userid[0];
         this.ACregistrationfield.name = this.bookingForm.get('name').value;
         this.ACregistrationfield.number = this.bookingForm.get('number').value;
         this.ACregistrationfield.date = this.bookingForm.get('date').value;
@@ -154,14 +163,15 @@ export class BookingFormComponent {
         this.ACregistrationfield.total = this.total;
         this.ACregistrationfield.activeStatus = 0;
         this.ACregistrationfield.end_services_otp = this.ending_otp;
-        this.save();
+        if (this.bookingForm.valid) {
+          this.save();
+        }
       })
-
   }
   save() {
     this.userRegistrationServices.ACservicebook(this.ACregistrationfield).subscribe(() => {
       console.log('register success');
-      this.router.navigate(['/thankYou'])
+      // this.router.navigate(['/thankYou'])
     }, () => {
       console.log("error");
     }
@@ -213,9 +223,14 @@ export class BookingFormComponent {
   }
   finalvalue() {
     this.total = this.values + this.values1 + this.values2 + this.values3 + this.values4 + this.values5;
-    alert('Your Total Prize is ' + this.total);
-    this.address_provider = true;
-    this.prizelist = false;
+    if (this.total > 0) {
+      alert('Your Total Prize is ' + this.total);
+      this.address_provider = true;
+      this.prizelist = false;
+    }
+    else {
+      alert("please select services");
+    }
   }
   Providers: Providers;
 
@@ -226,10 +241,11 @@ export class BookingFormComponent {
     this.userRegistrationServices.getProviderList().subscribe(
       data => {
         this.providers = data;
+        console.log(this.providers);
       }
     )
   }
-
+  /* blockchain */
 
 }
 

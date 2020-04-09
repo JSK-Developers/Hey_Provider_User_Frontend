@@ -4,6 +4,8 @@ import { from, Observable } from 'rxjs';
 import { BookingFormComponent } from '../booking-form/booking-form.component';
 import { RegistrationField, ACregistrationfield } from '../booking-form/bookingfield';
 import { Router } from '@angular/router';
+import { MyOrderField } from '../my-orders/my-order';
+import { map } from 'rxjs/operators';
 @Injectable({
     providedIn: 'root'
 })
@@ -13,33 +15,34 @@ export class HttpservicesService {
         private router: Router) { }
     public username;
     isUserLoggedIn() {
-        let user = sessionStorage.getItem('authenticateUser');
+        let user = localStorage.getItem('UserName');
         return !(user === null);
     }
     logout() {
-        sessionStorage.removeItem('authenticateUser');
-        this.router.navigate(['home']);
+        localStorage.removeItem('UserName');
+        this.router.navigate(['/logout']);
     }
-    sessonstorage(name) {
-        sessionStorage.setItem('authenticateUser', name);
-        this.username = name;
+    getUserId() {
+        let name = localStorage.getItem('UserName');
+        const headers = new HttpHeaders({ Authorization: `${sessionStorage.getItem('TOKEN')}` });
+        return this.httpclient.get('http://localhost:8080/api/' + `${name}`, { headers });
     }
 
     ServicesUrl = 'http://localhost:8080/api/';
+    ProviderServicesUrl = 'http://localhost:8080/apiProvider';
+    baseUrl = 'http://localhost:8080/';
 
     ACservicebook(bookingfield: ACregistrationfield): Observable<any> {
-        let httpHeaders = new HttpHeaders().set('content-type', 'application/json');
-        let options = {
-            headers: httpHeaders
-        };
-        return this.httpclient.post(this.ServicesUrl + 'AC_Service_Registration', bookingfield, options)
+        const headers = new HttpHeaders({ Authorization: `${sessionStorage.getItem('TOKEN')}` });
+        return this.httpclient.post(this.ServicesUrl + 'AC_Service_Registration', bookingfield, { headers })
     }
     registration(registrationField: RegistrationField): Observable<any> {
-        let httpHeaders = new HttpHeaders().set('content-type', 'application/json'); // data will be converted to json formate 
-        let options = {
-            headers: httpHeaders
-        };
-        return this.httpclient.post(this.ServicesUrl + 'users', registrationField, options)
+        return this.httpclient.post(this.ServicesUrl + 'register', registrationField)
+    }
+
+
+    authenticate(userName, password) {
+        return this.httpclient.post<any>(`${this.ServicesUrl}authenticate`, { userName, password });
     }
 
     // login(bookingfield: BookingField): Observable<any> {
@@ -50,17 +53,20 @@ export class HttpservicesService {
     //     return this.httpclient.post(this.ServicesUrl + 'register', bookingfield, options)
     // }
     public getProviderList(): Observable<any> {
-        return this.httpclient.get(`${this.ServicesUrl}` + '/Provider/ListProvider');
+        const headers = new HttpHeaders({ Authorization: `${sessionStorage.getItem('TOKEN')}` });
+        return this.httpclient.get(`${this.ProviderServicesUrl}` + '/provider/List', { headers });
     }
     public getRegistrationList(): Observable<any> {
-        return this.httpclient.get(`${this.ServicesUrl}` + '/registration/List');
+        const headers = new HttpHeaders({ Authorization: `${sessionStorage.getItem('TOKEN')}` });
+        return this.httpclient.get(`${this.ServicesUrl}` + '/registration/List', { headers });
     }
     public getRegistrationListByName(name: String): Observable<any> {
-        let httpHeaders = new HttpHeaders().set('content-type', 'application/json');
-        let options = {
-            headers: httpHeaders
-        };
-        return this.httpclient.get(`${this.ServicesUrl}` + '/users/' + `${name}`, options);
+        const headers = new HttpHeaders({ Authorization: `${sessionStorage.getItem('TOKEN')}` });
+        return this.httpclient.get(`${this.ServicesUrl}` + 'users/' + `${name}`, { headers });
+    }
+    public MyOrderDetailById(id: any) {
+        const headers = new HttpHeaders({ Authorization: `${sessionStorage.getItem('TOKEN')}` });
+        return this.httpclient.get<MyOrderField>(`${this.ServicesUrl}` + 'myOrder/' + `${id}`, { headers });
     }
 
 }
