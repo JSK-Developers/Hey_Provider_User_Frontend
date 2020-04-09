@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { from, Observable } from 'rxjs';
 import { BookingFormComponent } from '../booking-form/booking-form.component';
-import { RegistrationField, ACregistrationfield } from '../booking-form/bookingfield';
+import { RegistrationField, ACregistrationfield, ContactusField } from '../booking-form/bookingfield';
 import { Router } from '@angular/router';
 import { MyOrderField } from '../my-orders/my-order';
 import { map } from 'rxjs/operators';
@@ -38,6 +38,9 @@ export class HttpservicesService {
     }
     registration(registrationField: RegistrationField): Observable<any> {
         return this.httpclient.post(this.ServicesUrl + 'register', registrationField)
+    }
+    concatus(ContactusField: ContactusField): Observable<any> {
+        return this.httpclient.post(this.baseUrl + 'apiContactus/createContactusDetail', ContactusField)
     }
 
 

@@ -26,3 +26,9 @@ export class RegistrationField {
     email: string;
     password: string;
 }
+export class ContactusField {
+    name: string;
+    email: string;
+    subject: string;
+    message: string;
+}

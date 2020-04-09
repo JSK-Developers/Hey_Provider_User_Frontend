@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
 import { FormGroup, FormBuilder, NgForm, Validators } from '@angular/forms';
-import { BsDatepickerConfig, BsModalService } from 'ngx-bootstrap';
+import { BsDatepickerConfig, BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { Observable } from 'rxjs';
 import { ACregistrationfield } from './bookingfield';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { HttpservicesService } from '../Http_Services_Api/httpservices.service';
 import { CustomerServicesComponent } from '../customer-services/customer-services.component';
 import { Providers } from './providerList';
+import Web3 from 'web3';
 
 @Component({
   selector: 'app-booking-form',
@@ -14,7 +15,7 @@ import { Providers } from './providerList';
   styleUrls: ['./booking-form.component.scss']
 })
 export class BookingFormComponent {
-
+  modalRef: BsModalRef;
   username = "";
   message = 'helloworld'
   welcomeMessageFromService: string
@@ -70,7 +71,8 @@ export class BookingFormComponent {
   ending_otp = Math.floor(100000 + Math.random() * 900000);
   constructor(formbulder: FormBuilder,
     private userRegistrationServices: HttpservicesService,
-    private router: Router) {
+    private router: Router, private modalService: BsModalService,
+  ) {
     this.username = userRegistrationServices.username;
     console.log(this.starting_otp);
     console.log(this.ending_otp);
@@ -131,7 +133,7 @@ export class BookingFormComponent {
   loginid() {
     this.userRegistrationServices.getUserId().subscribe(
       data => {
-        console.log(data);
+        console.log(data[0]);
       }
     )
   }
@@ -143,8 +145,8 @@ export class BookingFormComponent {
 
     this.userRegistrationServices.getUserId().subscribe(
       data => {
-        const userid = data;
-        this.ACregistrationfield.userid = userid[0];
+        const userid: any = data;
+        this.ACregistrationfield.userid = userid;
         this.ACregistrationfield.name = this.bookingForm.get('name').value;
         this.ACregistrationfield.number = this.bookingForm.get('number').value;
         this.ACregistrationfield.date = this.bookingForm.get('date').value;
@@ -171,7 +173,7 @@ export class BookingFormComponent {
   save() {
     this.userRegistrationServices.ACservicebook(this.ACregistrationfield).subscribe(() => {
       console.log('register success');
-      // this.router.navigate(['/thankYou'])
+      this.router.navigate(['/thankYou'])
     }, () => {
       console.log("error");
     }
@@ -223,14 +225,18 @@ export class BookingFormComponent {
   }
   finalvalue() {
     this.total = this.values + this.values1 + this.values2 + this.values3 + this.values4 + this.values5;
-    if (this.total > 0) {
-      alert('Your Total Prize is ' + this.total);
-      this.address_provider = true;
-      this.prizelist = false;
-    }
-    else {
-      alert("please select services");
-    }
+    // if (this.total > 0) {
+    //   alert('Your Total Prize is ' + this.total);
+
+
+    // }
+    // else {
+    //   alert("please select services");
+    // }
+  }
+  seeform() {
+    this.address_provider = true;
+    this.prizelist = false;
   }
   Providers: Providers;
 
@@ -246,6 +252,13 @@ export class BookingFormComponent {
     )
   }
   /* blockchain */
+  openModal(template: TemplateRef<any>) {
+    if (this.total > 0) {
+      this.modalRef = this.modalService.show(template);
+    }
+  }
+
+
 
 }
 
