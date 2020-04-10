@@ -7,7 +7,7 @@ import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { HttpservicesService } from '../Http_Services_Api/httpservices.service';
 import { CustomerServicesComponent } from '../customer-services/customer-services.component';
 import { Providers } from './providerList';
-import Web3 from 'web3';
+// import Web3 from 'web3';
 
 @Component({
   selector: 'app-booking-form',
